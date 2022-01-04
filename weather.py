@@ -30,8 +30,8 @@ class Weather:
 
     def report(self):
         print(
-            f"The temperature at HK is {self.temperature}. The {self.direction_rename()} wind at {self.wind_speed} km/h"
-            f"is hitting this place.")
+            f"The temperature at HK is {self.temperature} deg C. The {self.direction_rename()} wind at {self.wind_speed}"
+            f"km/h is hitting this place.")
 
 
 class VerbalWeather(Weather):
@@ -58,7 +58,7 @@ class VerbalWeather(Weather):
 
     def report(self):
         print(
-            f"Today is {self.check_temperature()} deg C. The {self.direction_rename()} wind is {self.check_wind_speed()}.")
+            f"Today is {self.check_temperature()}. The {self.direction_rename()} wind is {self.check_wind_speed()}.")
 
 
 # location = input("Where are you? : ")
