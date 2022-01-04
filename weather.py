@@ -1,4 +1,7 @@
 # Weather Exercise
+from typing import Any
+
+
 class Weather:
     def __init__(self, temperature, wind_speed, wind_direction):
         self.temperature = temperature
@@ -27,14 +30,46 @@ class Weather:
 
     def report(self):
         print(
-            f"The temperature at HK is {self.temperature}. A {self.wind_speed} wind at {self.wind_direction} is "
-            f"hitting this place.")
+            f"The temperature at HK is {self.temperature}. The {self.direction_rename()} wind at {self.wind_speed} km/h"
+            f"is hitting this place.")
 
 
-location = input("Where are you? : ")
+class VerbalWeather(Weather):
+
+    def check_temperature(self):
+        dummy_temp = int(self.temperature)
+        if dummy_temp >= 20 & dummy_temp < 40:
+            return 'Warm'
+        elif dummy_temp >= 40:
+            return "Hot"
+        elif dummy_temp < 20 & dummy_temp > 10:
+            return "Cool"
+        elif dummy_temp <= 10 & dummy_temp > 5:
+            return "Cold"
+        elif dummy_temp <= 5:
+            return "Freezing"
+
+    def check_wind_speed(self):
+        dummy_speed = int(self.wind_speed)
+        if dummy_speed >= 30:
+            return 'Windy'
+        elif dummy_speed < 30:
+            return 'Comfortable'
+
+    def report(self):
+        print(
+            f"Today is {self.check_temperature()} deg C. The {self.direction_rename()} wind is {self.check_wind_speed()}.")
+
+
+# location = input("Where are you? : ")
 today_temperature = input("Input Current Temperature (deg C): ")
 today_wind_speed = input("Input Current Wind Speed (km/h): ")
 today_wind_direction = input("Input Current Wind Direction (E/S/W/N/NE/SE/NW/SW): ")
 
+print("Detail Report")
 today_weather = Weather(today_temperature, today_wind_speed, today_wind_direction)
 today_weather.report()
+
+print("Verbal Report")
+today_v_weather = VerbalWeather(today_temperature, today_wind_speed, today_wind_direction)
+today_v_weather.report()
